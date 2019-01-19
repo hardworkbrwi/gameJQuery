@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery para museu</title>
+	<link href="jquery-ui.css" rel="stylesheet">
+	<style>
+		#draggable, #draggable2 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+		#droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+	</style>
+</head>
+
+<body>
+		<div id="draggable" class="ui-widget-content">
+			<p>Rastro 01</p>
+		</div>
+			   
+		<div id="draggable2" class="ui-widget-content">
+			<p>Rastro 02</p>
+		</div>
+			   
+		<div id="droppable" class="ui-widget-header">
+			<p>Espaço para rastro 01</p>
+		</div>
+
+		<div id="droppable2" class="ui-widget-header">	
+			<p>Espaço para rastro 02</p>
+		</div>
+
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
+<script>
+	$( function() {
+    	$( "#draggable" ).draggable({ revert: "invalid", opacity: 0.35});
+    	$( "#draggable2" ).draggable({ revert: "invalid" });
+ 
+    	$( "#droppable" ).droppable({
+			accept: "#draggable",
+      		classes: {
+        		"ui-droppable-active": "ui-state-active",
+        		"ui-droppable-hover": "ui-state-hover"
+      		},
+			drop: function( event, ui ) {
+				$( this )
+					.addClass( "ui-state-highlight" )
+					.find( "p" )
+					.html( "Acertou!" );
+			}
+		});
+		
+		$( "#droppable2" ).droppable({
+			accept: "#draggable2",
+      		classes: {
+        		"ui-droppable-active": "ui-state-active",
+        		"ui-droppable-hover": "ui-state-hover"
+      		},
+			drop: function( event, ui ) {
+				$( this )
+					.addClass( "ui-state-highlight" )
+					.find( "p" )
+					.html( "Acertou!" );
+			}
+    	});
+  	} );
+</script>
+</body>
+</html>
