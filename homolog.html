@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Manipulando JSon</title>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Selecione o Idioma</h1>
+	<button onclick="setConfig( 'language','pt-br' )">Português</button>
+	<button onclick="setConfig( 'language','en' )">Inglês</button>
+	<button onclick="setConfig( 'language','es' )">Espanhol</button>
+</body>
+<script type="text/javascript">
+	$( document ).ready( function() {
+	 	
+	 	var config = localStorage.getItem( 'config' );
+
+	 	if( config == null ){
+		 	var config = {};
+		 	config.idioma = 'pt-br';
+		 	config.dificuldade = 'easy';
+		 	// Armazena no LocalStorage
+			localStorage.setItem( 'config', JSON.stringify( config ) );
+	 	}
+
+		// Obtém do LocalStorage
+		var objSalvo = localStorage.getItem( 'config' );
+
+		console.log( objSalvo );
+	});
+
+	function setConfig( type, value ){
+		var config = JSON.parse( localStorage.getItem( 'config' ) );
+		
+		switch( type ) {
+		  case 'language':
+		    	config.idioma = value;	
+		    break;
+		  case 'dificuldade':
+		    	config.dificuldade = value;
+		    break;
+		 }
+
+		localStorage.setItem( 'config', JSON.stringify( config ) );
+
+		console.log( localStorage.getItem( 'config' ) );
+
+	}
+</script>
+</html>
