@@ -1,51 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Manipulando JSon</title>
 	<meta charset="utf-8">
+	<title></title>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 </head>
-<body>
-	<h1>Selecione o Idioma</h1>
-	<button onclick="setConfig( 'language','pt-br' )">Português</button>
-	<button onclick="setConfig( 'language','en' )">Inglês</button>
-	<button onclick="setConfig( 'language','es' )">Espanhol</button>
-</body>
 <script type="text/javascript">
-	$( document ).ready( function() {
-	 	
-	 	var config = localStorage.getItem( 'config' );
+	
+	/*$( function() {
+			$.ajax({
+			  url: "json.json", //localização do arquivo
+			  beforeSend: function( xhr ) { //Função que será executada antes de chamar o arquivo JSON
+				xhr.overrideMimeType( "application/json" ); //Converte o MIME TYPE para JSON 
+			  }
+			})
+			  .done(function( data ) { //caso a leitura funcione retorna o arquivo JSON lido
+			  		console.log( data ); //imprime o JSON no console
+			  		$("#nome").html(data.nome);
+					$("#email").html(data.email);
+					$( "#idioma" ).html( data.idioma );
+					$( "#dificuldade" ).html( data.dificuldade );
+			  });
+	});*/
 
-	 	if( config == null ){
-		 	var config = {};
-		 	config.idioma = 'pt-br';
-		 	config.dificuldade = 'easy';
-		 	// Armazena no LocalStorage
-			localStorage.setItem( 'config', JSON.stringify( config ) );
-	 	}
+	// Quando a página estiver pronta execute abaixo
+	$( document ).ready( function(){
 
-		// Obtém do LocalStorage
-		var objSalvo = localStorage.getItem( 'config' );
+		// Configura a função setConfig para executar quando houver algum clique nos botões da página
+		$( '.setConfig' ).click( function(){
+			var type = $(this).attr( 'configType' ); // captura o tipo de parâmetro
+			var value = $(this).attr( 'configValue' ); // captura o valor do parâmetro
+			setConfig( type, value ); // passa os valores capturas para a função setCongig
+		} );
 
-		console.log( objSalvo );
-	});
+		$( function() {
+			$.ajax({
+			  url: "json.json", //localização do arquivo
+			  beforeSend: function( xhr ) { //Função que será executada antes de chamar o arquivo JSON
+				xhr.overrideMimeType( "application/json" ); //Converte o MIME TYPE para JSON 
+			  }
+			})
+			  .done(function( data ) { //caso a leitura funcione retorna o arquivo JSON lido
+			  		console.log( data ); //imprime o JSON no console
+			  		$("#nome").html(data.nome);
+					$("#email").html(data.email);
+					$( "#idioma" ).html( data.idioma );
+					$( "#dificuldade" ).html( data.dificuldade );
+			  });
+		});
 
+
+	} );
+
+	
 	function setConfig( type, value ){
 		var config = JSON.parse( localStorage.getItem( 'config' ) );
-		
-		switch( type ) {
-		  case 'language':
-		    	config.idioma = value;	
-		    break;
-		  case 'dificuldade':
-		    	config.dificuldade = value;
-		    break;
-		 }
+
+		switch( type ){
+			case 'language':
+				config.idioma = value;
+				break;
+			case 'dificuldade':
+				config.dificuldade = value;
+				break;		
+		}
 
 		localStorage.setItem( 'config', JSON.stringify( config ) );
-
-		console.log( localStorage.getItem( 'config' ) );
-
+		//console.log( localStorage.getItem( 'config' ) );
+		console.log( config );
 	}
 </script>
+<body>
+	<div id="nome"></div>
+	<div id="email"></div>
+	<div id="idioma"></div>
+	<div id="dificuldade"></div>
+
+	<h1>Selecione o idioma</h1>
+	<button onclick="setConfig( 'language', 'pt-br' )">Português</button>
+	<button onclick="setConfig( 'language', 'en' )">Inglês</button>
+	<button onclick="setConfig( 'language', 'es' )">Espanhol</button>
+
+	<h1>Selecione a dificuldade</h1>
+	<button class="setConfig" configType="dificuldade" configValue="easy">Fácil</button>
+	<button class="setConfig" configType="dificuldade" configValue="normal">Normal</button>
+	<button class="setConfig" configType="dificuldade" configValue="hard">Difícil</button>
+	<button class="setConfig" configType="dificuldade" configValue="nightmare">Pesadelo</button>
+</body>
 </html>
