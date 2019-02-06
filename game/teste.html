@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery para museu</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link href="jquery-ui.css" rel="stylesheet">
+	
+	
+<script language="JavaScript" type="text/javascript">
+	var imagens = new Array();
+	
+	imagens[0] = "TP1.jpg";
+	imagens[1] = "TP2.jpg";
+	imagens[2] = "TP3.jpg";
+	imagens[3] = "TP4.jpg";
+	imagens[4] = "TP5.jpg";
+	imagens[5] = "TP6.jpg";
+	imagens[6] = "TP7.jpg";
+	/*
+	imagens[7] = "TP8.jpg";
+	imagens[8] = "TP9.jpg";
+	imagens[9] = "TP10.jpg";
+	imagens[10] = "TP11.jpg";
+	imagens[11] = "TP12.jpg";
+	imagens[12] = "TP13.jpg";
+	imagens[13] = "TP14.jpg";
+	imagens[14] = "TP15.jpg";
+	imagens[15] = "TP16.jpg";
+	imagens[16] = "TP17.jpg";
+	imagens[17] = "TP18.jpg";
+	*/
+	var preBuffer = new Array();
+	
+	for( i=0; i < imagens.length; i++ ) {
+		preBuffer[i] = new Image();
+		preBuffer[i].src = imagens[i];
+	}
+	
+	function criaBannerTopo( qtdImagens ) {
+		for( i=0; i < qtdImagens; i++ ) {
+			indImg = Math.round( Math.random() * (imagens.length - 1) );
+			banner = imagens[indImg];
+			del = imagens.splice(indImg,1);
+			document.write("<img src='" + banner + "' id='" + indImg + "' class='imgBannerTopo' alt='' />");
+		}
+	}//-- Ao chamar o método, eu informo a quantidade de imagens que eu quero que apareça
+	//criaBannerTopo(2);
+</script>
+
+</head>
+<body>
+	<div>
+		<script type="text/javascript">
+			criaBannerTopo(1);
+		</script>
+
+	</div>
+	<div>
+		<script type="text/javascript">
+			criaBannerTopo(1);
+		</script>
+		
+	</div>
+	
+
+
+
+</body>
+</html>

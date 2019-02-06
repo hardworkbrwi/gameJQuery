@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery para museu</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link href="jquery-ui.css" rel="stylesheet">
+	<style>
+		#draggable, #draggable2, #draggable3, #draggable4, #draggable5 { 
+			width: 100px; 
+			height: 100px; 
+			padding: 0px; 
+			float: left; 
+			margin: 10px 10px 10px 0; 
+		}
+		#droppable, #droppable2, #droppable3, #droppable4, #droppable5 { 
+			width: 100px; 
+			height: 100px; 
+			padding: 0px; 
+			float: left; 
+			margin: 10px; 
+		}
+		.coluna-rastros{
+			width: 100px;
+		}
+		img{
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+	<script src="external/jquery/jquery.js"></script>
+	<script src="jquery-ui.js"></script>
+	<script>
+		$( function() {
+			$( "#draggable" ).draggable({ revert: "invalid" });
+			$( "#draggable2" ).draggable({ revert: "invalid" });
+			$( "#draggable3" ).draggable({ revert: "invalid" });
+			$( "#draggable4" ).draggable({ revert: "invalid" });
+			$( "#draggable5" ).draggable({ revert: "invalid" });
+			
+			$( "#droppable" ).droppable({
+				accept: "#draggable",
+				  classes: {
+					"ui-droppable-active": "ui-state-active",
+					"ui-droppable-hover": "ui-state-hover"
+				  },
+				drop: function( event, ui ) {
+					$( this )
+						.addClass( "ui-state-highlight" )
+						.find( "p" )
+						.html( "Acertou!" );
+				}
+			});
+			
+			$( "#droppable2" ).droppable({
+				accept: "#draggable2",
+				  classes: {
+					"ui-droppable-active": "ui-state-active",
+					"ui-droppable-hover": "ui-state-hover"
+				  },
+				drop: function( event, ui ) {
+					$( this )
+						.addClass( "ui-state-highlight" )
+						.find( "p" )
+						.html( "Acertou!" );
+				}
+			});
+			$( "#droppable3" ).droppable({
+				accept: "#draggable3",
+				  classes: {
+					"ui-droppable-active": "ui-state-active",
+					"ui-droppable-hover": "ui-state-hover"
+				  },
+				drop: function( event, ui ) {
+					$( this )
+						.addClass( "ui-state-highlight" )
+						.find( "p" )
+						.html( "Acertou!" );
+				}
+			});
+			$( "#droppable4" ).droppable({
+				accept: "#draggable4",
+				  classes: {
+					"ui-droppable-active": "ui-state-active",
+					"ui-droppable-hover": "ui-state-hover"
+				  },
+				drop: function( event, ui ) {
+					$( this )
+						.addClass( "ui-state-highlight" )
+						.find( "p" )
+						.html( "Acertou!" );
+				}
+			});
+			$( "#droppable5" ).droppable({
+				accept: "#draggable5",
+				  classes: {
+					"ui-droppable-active": "ui-state-active",
+					"ui-droppable-hover": "ui-state-hover"
+				  },
+				drop: function( event, ui ) {
+					$( this )
+						.addClass( "ui-state-highlight" )
+						.find( "p" )
+						.html( "Acertou!" );
+				}
+			});
+		  } );
+	</script>	
+</head>
+
+<body>
+		<div class="container-fluid bg-light">
+			<div class="clearfix">
+				<div id="draggable" class="ui-widget-content float-letf">
+					<img src="images/img_380_calopsita_0_600.jpg" class="rounded">
+				</div>
+				
+				<div id="droppable" class="ui-widget-header float-right">
+					<img src="images/calopsitas-11.jpg" class="rounded">
+				</div>
+			</div>
+
+			<div class="clearfix">
+				<div id="draggable2" class="ui-widget-content float-letf">
+					<p>Rastro 02</p>
+				</div>
+
+				<div id="droppable2" class="ui-widget-header float-right">	
+					<p>Espaço para rastro 02</p>
+				</div>
+			</div>
+
+			<div class="clearfix">
+				<div id="draggable3" class="ui-widget-content float-letf">
+					<p>Rastro 03</p>
+				</div>
+				
+				<div id="droppable3" class="ui-widget-header float-right">
+					<p>Espaço para rastro 03</p>
+				</div>
+			</div>
+			
+			<div class="clearfix">
+				<div id="draggable4" class="ui-widget-content float-letf">
+					<p>Rastro 04</p>
+				</div>
+				
+				<div id="droppable4" class="ui-widget-header float-right">
+					<p>Espaço para rastro 04</p>
+				</div>
+			</div>
+			
+			<div class="clearfix">
+				<div id="draggable5" class="ui-widget-content float-letf">
+					<p>Rastro 05</p>
+				</div>
+				
+				<div id="droppable5" class="ui-widget-header float-right">
+					<p>Espaço para rastro 05</p>
+				</div>
+			</div>			
+		</div>
+		
+
+</body>
+</html>
